@@ -61,12 +61,14 @@ class Missao:
         else:
             print("Não é possível iniciar essa missão.")
 
-    def concluir_missao(self):
+    def concluir_missao(self, valor=None):
         if self.__status == Status.EM_ANDAMENTO:
             self.__status = Status.CONCLUIDA
             print(f"Missão concluída! Recompensa: {self.recompensa} XP")
+            return True
         else:
             print("Não é possível concluir essa missão.")
+            return False
 
     def __eq__(self, other):
         return isinstance(other, Missao) and self.nome == other.nome

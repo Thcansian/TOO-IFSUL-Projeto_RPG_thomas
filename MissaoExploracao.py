@@ -1,4 +1,5 @@
 from Missao import Missao
+from status import Status
 
 class MissaoExploracao(Missao):
     def __init__(self, nome, descricao, recompensa, regiao, distancia):
@@ -6,8 +7,10 @@ class MissaoExploracao(Missao):
         self.__regiao = regiao
         self.__distancia = distancia
 
-    def exibir_dados(self):
-        msg = super().exibir_dados()
-        msg += f"\nregiao: {self.__regiao}"
-        msg += f"\ndistancia: {self.__distancia} km"
-        return msg
+    def concluir_missao(self, valor):
+        if valor >= self.__distancia:
+            return super().concluir_missao(valor)
+        else:
+            print("Distância insuficiente! Missão fracassada.")
+            self.status = Status.FRACASSADA
+            return False

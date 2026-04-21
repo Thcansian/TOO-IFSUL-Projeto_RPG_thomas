@@ -1,15 +1,23 @@
-from MissaoCombate import MissaoCombate
+from Personagem import Personagem
 from MissaoColeta import MissaoColeta
 from MissaoExploracao import MissaoExploracao
 
-print("=== TESTE DE MISSÕES ===")
+# cria personagem
+p = Personagem("rengiro")
 
-m1 = MissaoCombate("Caça Armamentos", "encontrar armas e passar pelo que precisar", 50, "Guerreiro", 5)
-m2 = MissaoColeta("Coletar Ervas", "Pegar ervas", 30, "Erva", 10)
-m3 = MissaoExploracao("Explorar Caverna", "Mapear caverna", 40, "Caverna", 2.5)
+# cria missões
+m1 = MissaoColeta("Coletar Ervas", "Pegar ervas", 50, "Erva", 10)
+m2 = MissaoExploracao("Explorar Caverna", "Mapear caverna", 40, "Caverna", 5)
 
-for m in [m1, m2, m3]:
-    print("\n---")
-    m.iniciar_missao()
-    m.concluir_missao()
-    print(m.exibir_dados())
+# Adiciona missões
+p.add_missao(m1)
+p.add_missao(m2)
+
+# teste
+print("\nSIMULAÇÃO")
+
+p.concluir_missao(m1, 10)
+
+p.concluir_missao(m2, 2)
+
+print(p.exibir_dados())

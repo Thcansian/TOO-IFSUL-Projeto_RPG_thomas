@@ -1,4 +1,5 @@
 from Missao import Missao
+from status import Status
 
 class MissaoColeta(Missao):
     def __init__(self, nome, descricao, recompensa, item, quantidade):
@@ -6,8 +7,10 @@ class MissaoColeta(Missao):
         self.__item = item
         self.__quantidade = quantidade
 
-    def exibir_dados(self):
-        msg = super().exibir_dados()
-        msg += f"\nitem: {self.__item}"
-        msg += f"\nquantidade: {self.__quantidade}"
-        return msg
+    def concluir_missao(self, valor):
+        if valor >= self.__quantidade:
+            return super().concluir_missao(valor)
+        else:
+            print("Itens insuficientes! Missão fracassada.")
+            self.status = Status.FRACASSADA
+            return False
